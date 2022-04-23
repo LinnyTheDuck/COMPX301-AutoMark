@@ -15,13 +15,14 @@ Options are:
 
 For example:
 automark.sh -r ../12345_12345/
-Will mark a students regex and search assignment in the 12345_12345 folder (remember the .. to go up a directory)
+Will mark a students regex and search assignment in the 12345_12345 folder 
+(remember the .. to go up a directory)
 ```
 
 ## Assumptions
-- The file names are well formed and the students have followed all asessment instructions
+- The file names are well formed and the students have followed all assessment instructions
 - This is based on the 2021 and 2022 assignment specifications (however it could be adapted for other changes)
 
 ## Todos
-- Sorting: alphabet check, bash script
+- Sorting: alphabet check, testing
 - Compression: more accurate cmp feedback, pack/unpack cycle
