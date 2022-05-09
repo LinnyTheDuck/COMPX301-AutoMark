@@ -25,8 +25,11 @@ else
     if [[ -f DistributeRuns.java && -f MergeRuns.java ]]
     then
         cat "$dir"/test_files/MobyDick.txt | java CreateRuns 30 | java MergeRuns > "$dir"/temp/sorted.txt # default of 2 way merge
+        cd "$dir"
         java alphabetical
+        cd "$1"
         cat "$dir"/test_files/MobyDick.txt | java CreateRuns 25 | java MergeRuns 7 > "$dir"/temp/sorted.txt
+        cd "$dir"
         java alphabetical
     else
     printf "\nSomething went a bit haywire with running the java files

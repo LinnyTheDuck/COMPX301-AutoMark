@@ -26,3 +26,4 @@ Will mark a students regex and search assignment in the 12345_12345 folder
 ## Todos
 - Sorting: testing
 - Compression: more accurate cmp feedback, pack/unpack cycle
+- A*: figure out the assignment :P

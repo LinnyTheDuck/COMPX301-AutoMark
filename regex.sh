@@ -24,7 +24,7 @@ else
     cd "$1"
     if [[ -f REcompile.java && -f REsearch.java ]]
     then # run the different regex tests
-        java REcompile "h" "on" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_0.txt
+        java REcompile "hon" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_0.txt
         java REcompile "..!" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_1.txt
         java REcompile "\*p?" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_2.txt
         java REcompile "\qu?" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_3.txt
