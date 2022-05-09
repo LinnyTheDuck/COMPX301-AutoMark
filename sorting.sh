@@ -27,6 +27,7 @@ else
         cat "$dir"/test_files/MobyDick.txt | java CreateRuns 30 | java MergeRuns > "$dir"/temp/sorted.txt # default of 2 way merge
         cd "$dir"
         java alphabetical
+        rm temp/sorted.txt # just incase??
         cd "$1"
         cat "$dir"/test_files/MobyDick.txt | java CreateRuns 25 | java MergeRuns 7 > "$dir"/temp/sorted.txt
         cd "$dir"

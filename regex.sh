@@ -42,6 +42,10 @@ else
 - The student has formatted the output incorrectly
 - The program doesn't actually work...
 - As a last resort, mark manually
+
+Results:
+Deduct approx 1.5 marks for each failed test
+However this can sway depending on further testing and understanding
 "
     else
         printf "\nSomething went a bit haywire with running the java files

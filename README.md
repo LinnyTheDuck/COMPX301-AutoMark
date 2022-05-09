@@ -24,6 +24,5 @@ Will mark a students regex and search assignment in the 12345_12345 folder
 - This is based on the 2021 and 2022 assignment specifications (however it could be adapted for other changes)
 
 ## Todos
-- Sorting: testing
 - Compression: more accurate cmp feedback, pack/unpack cycle
 - A*: figure out the assignment :P
