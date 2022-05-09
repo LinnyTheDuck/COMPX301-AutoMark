@@ -69,9 +69,36 @@ Testing packer/unpacker...
             # test the pack/unpack cycle here 
             if [[ -f LZpack.java || -f LZWpack.java ]] # check if they did packing
             then
-                printf "test each corresponding type of input THIS IS A TODO\n"
-                #cat "$dir"/test_files/bee.txt | java Enhex | java LZWencode | java LZWdecode | java Dehex > "$dir"/temp/out.txt 
-                #type=4
+                if [ type == 1 ]
+                then #printf "test each corresponding type of input THIS IS A TODO\n"
+                    #this should work for lz77 and lz78 or lzw if named without the w
+                    cat "$dir"/test_files/bee.txt | java LZencode | java LZpack | java LZunpack | java LZdecode > "$dir"/temp/out.txt
+                elif [ type == 2 ]
+                then
+                    cat "$dir"/test_files/bee.txt | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode > "$dir"/temp/out.txt
+                elif [ type == 3 ]
+                then
+                    cat "$dir"/test_files/beehex.txt | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode > "$dir"/temp/out.txt
+                elif [ type == 4 ]
+                then
+                    cat "$dir"/test_files/bee.txt | java Enhex | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode | java Dehex > "$dir"/temp/out.txt
+                fi
+
+                cd "$dir"
+                sha256sum test_files/bee.txt temp/out.txt > temp/log.txt # check shasum
+                equal=$(java comparesum) # check if sums match
+                if [ "$equal" == true ] # if equal test the pack cycle
+                then
+                    printf "
+LZ cycle sucsessful!
+Final grade: 100%% (A+)
+"
+                else
+                    printf "
+LZ cycle unsucsessful! Check if only the packer works manually
+Estimated Final Grade: 85 - 95%%
+"
+                fi
             else
                 printf "No packer/unpacker found
 Final Grade: 89%% (A)"

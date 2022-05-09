@@ -10,6 +10,7 @@ Options are:
 -s             mark sorting algorithm (works with both external sort and polyphase)
 -c             mark compression algorithm (works with LZ77, LZ78 and LZW)
 -r             mark regex and search
+-a             mark A*
 
 For example:
 automark.sh -r ../12345_12345/
@@ -33,6 +34,9 @@ else
         elif [ "$1" == '-r' ]
         then
             ./regex.sh "$2"
+        elif [ "$1" == '-a' ]
+        then
+            ./astar.sh "$2"
         else # more error checking
             printf "invalid option, run 'automark.sh -h' to see instructions \n"
         fi

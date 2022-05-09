@@ -12,6 +12,7 @@ Options are:
 -s             mark sorting algorithm (works with both external sort and polyphase)
 -c             mark compression algorithm (works with LZ77, LZ78 and LZW)
 -r             mark regex and search
+-a             mark A*
 
 For example:
 automark.sh -r ../12345_12345/
@@ -24,5 +25,4 @@ Will mark a students regex and search assignment in the 12345_12345 folder
 - This is based on the 2021 and 2022 assignment specifications (however it could be adapted for other changes)
 
 ## Todos
-- Compression: more accurate cmp feedback, pack/unpack cycle
 - A*: figure out the assignment :P
