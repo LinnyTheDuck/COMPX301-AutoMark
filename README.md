@@ -24,5 +24,10 @@ Will mark a students regex and search assignment in the 12345_12345 folder
 - The file names are well formed and the students have followed all assessment instructions
 - This is based on the 2021 and 2022 assignment specifications (however it could be adapted for other changes)
 
+## Modifications
+
+### Replacing Testing Files
+
 ## Todos
-- A*: figure out the assignment :P
+- A*: get solutions to the tests
+- Make modding the software more intuitive, add a config file??
