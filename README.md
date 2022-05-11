@@ -1,7 +1,9 @@
 # COMPX301 AutoMark
+
 As the COMPX301 tutor for 2022 I realised that marking is tedious. So of course I automate it.
 
 ## Running the Software
+
 Run `automark.sh <option> <directory>` to mark a students submission
 
 You may need to `chmod 744 *.sh` to be able to run the bash files
@@ -21,13 +23,33 @@ Will mark a students regex and search assignment in the 12345_12345 folder
 ```
 
 ## Assumptions
+
 - The file names are well formed and the students have followed all assessment instructions
 - This is based on the 2021 and 2022 assignment specifications (however it could be adapted for other changes)
 
 ## Modifications
 
+If you would like to modify the parameters of the tests themselves, then below are instructions in order to go about it.
+
+Currently answers for the Regex and A* markers must be manually written, automatic solution generation may or may not be avaliable in the future.
+
+### settings.conf
+
+This file determines the parameters each test is run with. They are separated into categories based on each assignment. Refer to the comments by each setting for detailed information about each one.
+
+Some things to note:
+
+- File names must not include directories, unless if they are subdirectories inside `test_files`
+- The first merge in the **Sorting** test should default to 2, so no parameter is given
+- The contents of the hex file for **Compression** should consist of upper-case hex characters on a single line
+
 ### Replacing Testing Files
 
+You can add new testing files into the `test_files` directory. Remember to update the reference in the `settings.conf` file.
+
 ## Todos
+
 - A*: get solutions to the tests
-- Make modding the software more intuitive, add a config file??
+- Implement config mods
+- Make getting awnswers for regex and a* more intuitive -  auto solution generator?
+- Same thing for generating hex from plaintext?
