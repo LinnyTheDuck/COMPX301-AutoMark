@@ -41,12 +41,17 @@ Some things to note:
 
 - File names must not include directories, unless if they are subdirectories inside `test_files`
 - The first merge in the **Sorting** test should default to 2, so no parameter is given
-- The contents of the hex file for **Compression** should consist of upper-case hex characters on a single line
+- The contents of the hex file for **Compression** should consist of upper-case hex characters on a single line: this may or may not be able to be auto generated in the future
+- The final test in **Regex** should intentionally be an illegal expression
+- The start and end values for **A\*** are the indexes of the coodinates in the CSV file. Just take the line number in the corresponding CSV and subtract 1.
 
 ### Replacing Testing Files
 
 You can add new testing files into the `test_files` directory. Remember to update the reference in the `settings.conf` file.
 
+### Auto Generating Solutions
+
+This is on the todolist, needs to be done without allowing students to view the code.
 ## Todos
 
 - A*: get solutions to the tests
