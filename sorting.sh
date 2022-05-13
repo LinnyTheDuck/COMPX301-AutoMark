@@ -1,6 +1,7 @@
 #!/bin/bash
 
 dir=$(pwd) # store the current dir
+source settings.conf
 
 # if no temp folder make one
 if [[ ! -d temp ]]
@@ -24,12 +25,12 @@ else
     cd "$1"
     if [[ -f DistributeRuns.java && -f MergeRuns.java ]]
     then
-        cat "$dir"/test_files/MobyDick.txt | java CreateRuns 30 | java MergeRuns > "$dir"/temp/sorted.txt # default of 2 way merge
+        cat "$dir"/test_files/"$input_sort" | java CreateRuns "$create_num_1" | java MergeRuns > "$dir"/temp/sorted.txt # default of 2 way merge
         cd "$dir"
         java alphabetical
         rm temp/sorted.txt # just incase??
         cd "$1"
-        cat "$dir"/test_files/MobyDick.txt | java CreateRuns 25 | java MergeRuns 7 > "$dir"/temp/sorted.txt
+        cat "$dir"/test_files/"$input_sort" | java CreateRuns "$create_num_2" | java MergeRuns "$merge_way" > "$dir"/temp/sorted.txt
         cd "$dir"
         java alphabetical
     else
