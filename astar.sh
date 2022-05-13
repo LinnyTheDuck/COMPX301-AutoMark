@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source settings.conf # import settings
 dir=$(pwd) # store the current dir
 
 # if no temp folder make one

@@ -2,6 +2,8 @@
 
 fail=false
 type=0 # check the command type
+
+source settings.conf # import settings
 dir=$(pwd) # store the current dir
 
 # if no temp folder make one
@@ -27,15 +29,15 @@ else
     # check cycle with regular 
     if [[ -f Enhex.java ]] # in the case where hex is used
     then
-        cat "$dir"/test_files/bee.txt | java Enhex | java LZWencode | java LZWdecode | java Dehex > "$dir"/temp/out.txt 
+        cat "$dir"/test_files/"$input_plaintext" | java Enhex | java LZWencode | java LZWdecode | java Dehex > "$dir"/temp/out.txt 
         type=4
     elif [[ -f LZencode.java ]] # generic LZ
     then
-        cat "$dir"/test_files/bee.txt | java LZencode | java LZdecode > "$dir"/temp/out.txt 
+        cat "$dir"/test_files/"$input_plaintext" | java LZencode | java LZdecode > "$dir"/temp/out.txt 
         type=1
     elif [[ -f LZWencode.java ]] # for LZW
     then
-        (cat "$dir"/test_files/bee.txt | java LZWencode | java LZWdecode > "$dir"/temp/out.txt type=2) || (cat "$dir"/test_files/beehex.txt | java LZWencode | java LZWdecode > "$dir"/temp/out.txt type=3)
+        (cat "$dir"/test_files/"$input_plaintext" | java LZWencode | java LZWdecode > "$dir"/temp/out.txt type=2) || (cat "$dir"/test_files/"$input_hex" | java LZWencode | java LZWdecode > "$dir"/temp/out.txt type=3)
     else 
         printf "\nSomething went a bit haywire with running the java files
 Estimated grade: 0-89%%
@@ -52,7 +54,7 @@ Things to do:
     fi
 
     cd "$dir"
-    sha256sum test_files/bee.txt temp/out.txt > temp/log.txt # check shasum
+    sha256sum test_files/"$input_plaintext" temp/out.txt > temp/log.txt # check shasum
 
     if [ "$fail" == false ]
     then
@@ -72,20 +74,20 @@ Testing packer/unpacker...
                 if [ type == 1 ]
                 then #printf "test each corresponding type of input THIS IS A TODO\n"
                     #this should work for lz77 and lz78 or lzw if named without the w
-                    cat "$dir"/test_files/bee.txt | java LZencode | java LZpack | java LZunpack | java LZdecode > "$dir"/temp/out.txt
+                    cat "$dir"/test_files/"$input_plaintext" | java LZencode | java LZpack | java LZunpack | java LZdecode > "$dir"/temp/out.txt
                 elif [ type == 2 ]
                 then
-                    cat "$dir"/test_files/bee.txt | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode > "$dir"/temp/out.txt
+                    cat "$dir"/test_files/"$input_plaintext" | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode > "$dir"/temp/out.txt
                 elif [ type == 3 ]
                 then
-                    cat "$dir"/test_files/beehex.txt | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode > "$dir"/temp/out.txt
+                    cat "$dir"/test_files/"$input_hex" | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode > "$dir"/temp/out.txt
                 elif [ type == 4 ]
                 then
-                    cat "$dir"/test_files/bee.txt | java Enhex | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode | java Dehex > "$dir"/temp/out.txt
+                    cat "$dir"/test_files/"$input_plaintext" | java Enhex | java LZWencode | java LZWpack | java LZWunpack | java LZWdecode | java Dehex > "$dir"/temp/out.txt
                 fi
 
                 cd "$dir"
-                sha256sum test_files/bee.txt temp/out.txt > temp/log.txt # check shasum
+                sha256sum test_files/"$input_plaintext" temp/out.txt > temp/log.txt # check shasum
                 equal=$(java comparesum) # check if sums match
                 if [ "$equal" == true ] # if equal test the pack cycle
                 then
@@ -105,7 +107,8 @@ Final Grade: 89%% (A)"
             fi
             
         else # do a cmp
-            cmp test_files/bee.txt temp/out.txt > temp/log.txt
+            # need an if just incase hex version used
+            cmp test_files/"$input_plaintext" temp/out.txt > temp/log.txt
             printf "
 Looks like the sha256sum didn't match.
 Estimated grade: 0-84%%
