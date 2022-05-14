@@ -24,14 +24,14 @@ Things to do:
 else
     # java Stars <test file> <index in csv for start point> <index in csv for end point> <distance value>
     printf "Testing Small CSV\n"
-    java Stars "$dir"/test_files/small.csv 13 49 5
-    java Stars "$dir"/test_files/small.csv 13 49 30
+    java Stars "$dir"/test_files/"$small_csv" "$start_index_1" "$end_index_1" "$small_D"
+    java Stars "$dir"/test_files/"$small_csv" "$start_index_1" "$end_index_1" "$large_D"
     printf "Testing Medium CSV\n"
-    java Stars "$dir"/test_files/clusters.csv 96 57 5
-    java Stars "$dir"/test_files/clusters.csv 96 57 30
+    java Stars "$dir"/test_files/"$mid_csv" "$start_index_2" "$end_index_2" "$small_D"
+    java Stars "$dir"/test_files/"$mid_csv" "$start_index_2" "$end_index_2" "$large_D"
     printf "Testing Large CSV\n"
-    java Stars "$dir"/test_files/spiral.csv 0 174 5
-    java Stars "$dir"/test_files/spiral.csv 0 174 30
+    java Stars "$dir"/test_files/"$large_csv" "$start_index_3" "$end_index_3" "$small_D"
+    java Stars "$dir"/test_files/"$large_csv" "$start_index_3" "$end_index_3" "$large_D"
 
     printf "
 Grading:

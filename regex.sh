@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source settings.conf # import settings
 dir=$(pwd) # store the current dir
 
 # if no temp folder make one
@@ -24,17 +25,17 @@ else
     cd "$1"
     if [[ -f REcompile.java && -f REsearch.java ]]
     then # run the different regex tests
-        java REcompile "hon" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_0.txt
-        java REcompile "..!" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_1.txt
-        java REcompile "\*p?" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_2.txt
-        java REcompile "\qu?" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_3.txt
-        java REcompile "\*p*" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_4.txt
-        java REcompile "\*p+" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_5.txt
-        java REcompile "ki|SAm|h.p" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_6.txt
-        java REcompile "m[aoieu]n" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_7.txt
-        java REcompile "(p|c)l(a+|e+)" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_8.txt 
-        java REcompile "pr+[oe]" | java REsearch "$dir"/test_files/Quotes.txt > "$dir"/temp/regout_9.txt
-        java REcompile "???***" > "$dir"/temp/errout.txt
+        java REcompile "$regex_0" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_0.txt
+        java REcompile "$regex_1" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_1.txt
+        java REcompile "$regex_2" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_2.txt
+        java REcompile "$regex_3" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_3.txt
+        java REcompile "$regex_4" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_4.txt
+        java REcompile "$regex_5" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_5.txt
+        java REcompile "$regex_6" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_6.txt
+        java REcompile "$regex_7" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_7.txt
+        java REcompile "$regex_8" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_8.txt 
+        java REcompile "$regex_9" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_9.txt
+        java REcompile "$regex_fail" > "$dir"/temp/errout.txt
         cd "$dir"
         java checkregex
         printf "\nFor any tests that fail, check a few things:

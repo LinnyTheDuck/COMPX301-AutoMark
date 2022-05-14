@@ -54,7 +54,9 @@ You can add new testing files into the `test_files` directory. Remember to updat
 This is on the todolist, needs to be done without allowing students to view the code.
 ## Todos
 
-- A*: get solutions to the tests
+- A*: get solutions to the tests? If uses GUI how to verify?
 - Implement config mods
 - Make getting awnswers for regex and a* more intuitive -  auto solution generator?
 - Same thing for generating hex from plaintext?
+- Code/comment cleanup and put files in src
+- Better feedback for compression and regex
