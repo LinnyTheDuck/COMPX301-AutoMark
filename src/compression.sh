@@ -58,7 +58,9 @@ Things to do:
 
     if [ "$fail" == false ]
     then
+        cd src
         equal=$(java comparesum) # check if sums match
+        cd ..
         if [ "$equal" == true ] # if equal test the pack cycle
         then
             printf "
@@ -88,7 +90,9 @@ Testing packer/unpacker...
 
                 cd "$dir"
                 sha256sum test_files/"$input_plaintext" temp/out.txt > temp/log.txt # check shasum
+                cd src
                 equal=$(java comparesum) # check if sums match
+                cd ..
                 if [ "$equal" == true ] # if equal test the pack cycle
                 then
                     printf "

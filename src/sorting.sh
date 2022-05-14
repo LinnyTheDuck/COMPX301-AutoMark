@@ -27,12 +27,12 @@ else
     if [[ -f DistributeRuns.java && -f MergeRuns.java ]]
     then
         cat "$dir"/test_files/"$input_sort" | java CreateRuns "$create_num_1" | java MergeRuns > "$dir"/temp/sorted.txt # default of 2 way merge
-        cd "$dir"
+        cd "$dir"/src
         java alphabetical
-        rm temp/sorted.txt # just incase
-        cd "$1"
+        rm ../temp/sorted.txt # just incase
+        cd ../"$1"
         cat "$dir"/test_files/"$input_sort" | java CreateRuns "$create_num_2" | java MergeRuns "$merge_way" > "$dir"/temp/sorted.txt
-        cd "$dir"
+        cd "$dir"/src
         java alphabetical
     else
     printf "

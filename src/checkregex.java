@@ -2,14 +2,14 @@ import java.io.*;
 
 public class checkregex {
     public static String[] lines; // global for full file
-    public static File answers = new File("test_files/answers.txt");
+    public static File answers = new File("../test_files/answers.txt");
     public static void main(String[] args) {
         try {
-            File quotes = new File("test_files/Quotes.txt");
+            File quotes = new File("../test_files/Quotes.txt");
             lines = read(quotes); // get full file for checking purposes
             int pass = checks(); // run checks for the output files
 
-            File empty = new File("temp/errout.txt"); // should be empty
+            File empty = new File("../temp/errout.txt"); // should be empty
             BufferedReader br = new BufferedReader(new FileReader(empty));
             String line = br.readLine();
             if (line == null) //System.out.println("No errors, and file empty");
@@ -66,7 +66,7 @@ public class checkregex {
     public static File[] filearray(){
         File[] outlines = new File[10]; // shove all the output files in an array idk
         for(int i = 0; i < 10; i++){
-            outlines[i] = new File("temp/regout_" + i + ".txt");
+            outlines[i] = new File("../temp/regout_" + i + ".txt");
         }
         return outlines;
     }

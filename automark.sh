@@ -17,7 +17,9 @@ automark.sh -r ../12345_12345/
 Will mark a students regex and search assignment in the 12345_12345 folder (remember the .. to go up a directory)
 "
 else
+    cd src
     javac *.java # complie java programs
+    cd ..
     if [ -z "$2" ] # error checking
     then
         printf "no directory specified, run 'automark.sh -h' to see instructions \n"
@@ -27,16 +29,16 @@ else
     else
         if [ "$1" == '-s' ] # running options
         then
-            ./sorting.sh "$2"
+            ./src/sorting.sh "$2"
         elif [ "$1" == '-c' ]
         then
-            ./compression.sh "$2"
+            ./src/compression.sh "$2"
         elif [ "$1" == '-r' ]
         then
-            ./regex.sh "$2"
+            ./src/regex.sh "$2"
         elif [ "$1" == '-a' ]
         then
-            ./astar.sh "$2"
+            ./src/astar.sh "$2"
         else # more error checking
             printf "invalid option, run 'automark.sh -h' to see instructions \n"
         fi
