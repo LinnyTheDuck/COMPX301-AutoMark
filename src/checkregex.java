@@ -5,7 +5,7 @@ public class checkregex {
     public static File answers = new File("../test_files/answers.txt");
     public static void main(String[] args) {
         try {
-            File quotes = new File("../test_files/Quotes.txt");
+            File quotes = new File("../test_files/" + args[0]); // input file
             lines = read(quotes); // get full file for checking purposes
             int pass = checks(); // run checks for the output files
 
@@ -84,7 +84,7 @@ public class checkregex {
             }
             br.close();
         } catch (Exception e) {
-            System.err.println("error with reading the quotes files");
+            System.err.println("error with reading the input file");
             e.printStackTrace();
         }
         return lines_out;

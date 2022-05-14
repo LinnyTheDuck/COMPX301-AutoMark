@@ -3,9 +3,10 @@ import java.io.*;
 public class alphabetical {
     public static void main(String[] args) {
         try {
-            File sorted = new File("../temp/sorted.txt");
-            File original = new File("../test_files/MobyDick.txt");
+            File sorted = new File("../temp/sorted.txt"); // hardcoded output
+            File original = new File("../test_files/" + args[0]); // input file
             BufferedReader br = new BufferedReader(new FileReader(sorted));
+
             if (sorted.length() == original.length()) { // checks if anything has been lost
                 String one = br.readLine();
                 String two = br.readLine();

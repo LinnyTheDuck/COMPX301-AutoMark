@@ -28,12 +28,12 @@ else
     then
         cat "$dir"/test_files/"$input_sort" | java CreateRuns "$create_num_1" | java MergeRuns > "$dir"/temp/sorted.txt # default of 2 way merge
         cd "$dir"/src
-        java alphabetical
+        java alphabetical "$input_sort"
         rm ../temp/sorted.txt # just incase
         cd ../"$1"
         cat "$dir"/test_files/"$input_sort" | java CreateRuns "$create_num_2" | java MergeRuns "$merge_way" > "$dir"/temp/sorted.txt
         cd "$dir"/src
-        java alphabetical
+        java alphabetical "$input_sort"
     else
     printf "
 Something went a bit haywire with running the java files

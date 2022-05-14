@@ -3,7 +3,7 @@ import java.io.*;
 public class comparesum {
     public static void main(String[] args) {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("../temp/log.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("../temp/log.txt")); // get stdin checksums
             String[] orig = br.readLine().split("  ");
             String[] out = br.readLine().split("  "); // take the hashes
 

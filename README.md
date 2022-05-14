@@ -4,22 +4,28 @@ As the COMPX301 tutor for 2022 I realised that marking is tedious. So of course 
 
 ## Running the Software
 
-Run `automark.sh <option> <directory>` to mark a students submission
+Run `./automark.sh <options> <directory>` to mark a students submission
 
 You may need to `chmod 744 *.sh` to be able to run the bash files
 
 ```
 Options are:
 -h             view help menu
+
+--generate     generate solutions, specify which algorithm after
+
 -s             mark sorting algorithm (works with both external sort and polyphase)
 -c             mark compression algorithm (works with LZ77, LZ78 and LZW)
 -r             mark regex and search
 -a             mark A*
 
 For example:
-automark.sh -r ../12345_12345/
+./automark.sh -r ../12345_12345/
 Will mark a students regex and search assignment in the 12345_12345 folder 
 (remember the .. to go up a directory)
+
+./automark.sh --generate -r
+Will generate a regex solution based on the parameters specified in settings.conf
 ```
 
 ## Assumptions
@@ -52,11 +58,11 @@ You can add new testing files into the `test_files` directory. Remember to updat
 ### Auto Generating Solutions
 
 This is on the todolist, needs to be done without allowing students to view the code.
+
 ## Todos
 
 - A*: get solutions to the tests? If uses GUI how to verify?
-- Implement config mods
 - Make getting awnswers for regex and a* more intuitive -  auto solution generator?
 - Same thing for generating hex from plaintext?
-- Code/comment cleanup and put files in src
-- Better feedback for compression and regex
+- Code/comment cleanup
+- Better feedback for compression (bash) and regex (java)

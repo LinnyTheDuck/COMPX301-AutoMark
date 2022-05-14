@@ -37,7 +37,7 @@ else
         java REcompile "$regex_9" | java REsearch "$dir"/test_files/"$search_file" > "$dir"/temp/regout_9.txt
         java REcompile "$regex_fail" > "$dir"/temp/errout.txt
         cd "$dir"/src
-        java checkregex
+        java checkregex "$search_file"
         printf "\nFor any tests that fail, check a few things:
 - Make sure the rules in the README cover it
 - The student has formatted the output incorrectly
