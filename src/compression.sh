@@ -14,6 +14,7 @@ fi
 
 javac "$1"/*.java 2> temp/log.txt # compile
 
+# check if we can proceed with testing the program
 if [ -s temp/log.txt ] # check if log is empty
 then
     cat temp/log.txt # there were compilation errors
@@ -53,15 +54,24 @@ Things to do:
         fail=true
     fi
 
+    #check the sha256sum hashes
     cd "$dir"
-    sha256sum test_files/"$input_plaintext" temp/out.txt > temp/log.txt # check shasum
+    if [ type == 3 ] # special case for hex input
+    then
+        sha256sum test_files/"$input_hex" temp/out.txt > temp/log.txt # check shasum
+    else
+        sha256sum test_files/"$input_plaintext" temp/out.txt > temp/log.txt # check shasum
+    fi
 
+    # if the compress cycle is sucsessful, start the pack cycle
     if [ "$fail" == false ]
     then
         cd src
         equal=$(java comparesum) # check if sums match
         cd ..
-        if [ "$equal" == true ] # if equal test the pack cycle
+
+        # if the sums match equal test the pack cycle
+        if [ "$equal" == true ] 
         then
             printf "
 LZ cycle sucsessful!
@@ -70,6 +80,7 @@ Current estimated grade: 85%%
 Testing packer/unpacker...
 "
             cd "$1"
+
             # test the pack/unpack cycle here 
             if [[ -f LZpack.java || -f LZWpack.java ]] # check if they did packing
             then
@@ -89,10 +100,17 @@ Testing packer/unpacker...
                 fi
 
                 cd "$dir"
-                sha256sum test_files/"$input_plaintext" temp/out.txt > temp/log.txt # check shasum
+                if [ type == 3 ] # special case for hex input
+                then
+                    sha256sum test_files/"$input_hex" temp/out.txt > temp/log.txt # check shasum
+                else
+                    sha256sum test_files/"$input_plaintext" temp/out.txt > temp/log.txt # check shasum
+                fi
+
                 cd src
                 equal=$(java comparesum) # check if sums match
                 cd ..
+
                 if [ "$equal" == true ] # if equal test the pack cycle
                 then
                     printf "
@@ -109,10 +127,16 @@ Estimated Final Grade: 85 - 95%%
                 printf "No packer/unpacker found
 Final Grade: 89%% (A)"
             fi
+
+        # otherwise compare the files 
+        else
+            if [ type == 3 ] # special case for hex input
+            then
+                cmp test_files/"$input_hex" temp/out.txt > temp/log.txt
+            else
+                cmp test_files/"$input_plaintext" temp/out.txt > temp/log.txt
+            fi
             
-        else # do a cmp
-            # need an if just incase hex version used
-            cmp test_files/"$input_plaintext" temp/out.txt > temp/log.txt
             printf "
 Looks like the sha256sum didn't match.
 Estimated grade: 0-84%%
@@ -123,8 +147,11 @@ Things to check for:
 - it could just be an extra null char or newline at the end of the file - don't take off marks for this
 - The output/input may not be consistent (ie lower and upper case hex)
 - anything more severe may need manual marking...
+
+Log file contents:
 "
-            # add more detailed cmp feedback here
+
+            cat temp/log.txt
         fi
     fi
 fi
