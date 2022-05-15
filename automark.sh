@@ -6,14 +6,15 @@ then
 ./automark.sh <options> <directory>
 
 Options are:
--h             view help menu
+-h                              view help menu
 
---generate     generate solutions, specify which algorithm after
+--generate <algorithm_option>   generate solutions for a specified algorithm (compression and A*)
+--hex <input_file>              generate a hex output for a plaintext input
 
--s             mark sorting algorithm (works with both external sort and polyphase)
--c             mark compression algorithm (works with LZ77, LZ78 and LZW)
--r             mark regex and search
--a             mark A*
+-s                              mark sorting algorithm (works with both external sort and polyphase)
+-c                              mark compression algorithm (works with LZ77, LZ78 and LZW)
+-r                              mark regex and search
+-a                              mark A*
 
 For example:
 ./automark.sh -r ../12345_12345/
@@ -36,6 +37,14 @@ else
             printf "Generating A\* Solution: On the TODO list\n"
         else # more error checking
             printf "no algorithm specified, run 'automark.sh -h' to see instructions \n"
+        fi
+    elif [ "$1" == '--hex' ]
+    then
+        if [ -z $2 ]
+        then
+            printf "no file specified, run './automark.sh -h' to see instructions \n"
+        else
+            printf "Generating hex file: On the TODO list\n"
         fi
     elif [ -z "$2" ] # error checking
     then

@@ -10,14 +10,15 @@ You may need to `chmod 744 *.sh` to be able to run the bash files
 
 ```
 Options are:
--h             view help menu
+-h                              view help menu
 
---generate     generate solutions, specify which algorithm after
+--generate <algorithm_option>   generate solutions for a specified algorithm (compression and A*)
+--hex <input_file>              generate a hex output for a plaintext input
 
--s             mark sorting algorithm (works with both external sort and polyphase)
--c             mark compression algorithm (works with LZ77, LZ78 and LZW)
--r             mark regex and search
--a             mark A*
+-s                              mark sorting algorithm (works with both external sort and polyphase)
+-c                              mark compression algorithm (works with LZ77, LZ78 and LZW)
+-r                              mark regex and search
+-a                              mark A*
 
 For example:
 ./automark.sh -r ../12345_12345/
@@ -57,12 +58,15 @@ You can add new testing files into the `test_files` directory. Remember to updat
 
 ### Auto Generating Solutions
 
+`./automark.sh --generate <algorithm_option>` will generate solutions for a specified algorithm. Currently algorithm options are compression and A*
+
 This is on the todolist, needs to be done without allowing students to view the code.
+
+`./automark.sh --hex <input_file>` will generate a hex file from a plaintext input file. The output file will be placed in the `test_files` directory.
 
 ## Todos
 
 - A*: get solutions to the tests? If uses GUI how to verify?
-- Make getting awnswers for regex and a* more intuitive -  auto solution generator?
+- Make getting answers for regex and a* more intuitive -  auto solution generator?
 - Same thing for generating hex from plaintext?
-- Code/comment cleanup
-- Better feedback for compression (bash) and regex (java)
+- Code/comment cleanup for regex (java)
