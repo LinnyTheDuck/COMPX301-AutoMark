@@ -26,6 +26,7 @@ Will generate a regex solution based on the parameters specified in settings.con
 else
     cd src
     javac *.java # complie java programs
+    chmod 744 *.sh # make all bash scripts executable
     cd ..
     if [ "$1" == '--generate' ]
     then
@@ -40,11 +41,12 @@ else
         fi
     elif [ "$1" == '--hex' ]
     then
-        if [ -z $2 ]
+        if [ -z "$2" ]
         then
             printf "no file specified, run './automark.sh -h' to see instructions \n"
         else
-            printf "Generating hex file: On the TODO list\n"
+            # printf "Generating hex file: On the TODO list\n"
+            ./src/hex.sh "$2"
         fi
     elif [ -z "$2" ] # error checking
     then
