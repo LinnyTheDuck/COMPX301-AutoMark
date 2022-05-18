@@ -32,10 +32,22 @@ else
     printf "Testing Large CSV\n"
     java Stars "$dir"/test_files/"$large_csv" "$start_index_3" "$end_index_3" "$small_D"
     java Stars "$dir"/test_files/"$large_csv" "$start_index_3" "$end_index_3" "$large_D"
+    printf "Testing 4th CSV\n"
+    java Stars "$dir"/test_files/"$fourth_csv" "$start_index_4" "$end_index_4" "$small_D"
+    java Stars "$dir"/test_files/"$fourth_csv" "$start_index_4" "$end_index_4" "$large_D"
 
     printf "
 Grading:
-For each test that doesn't work correctly remove around 1.5 marks,
-dependant on how well the algorithm attempt is.
+[10 mks] test cases for small.csv work fine
+[10 mks] test cases for clusters.csv work fine
+[10 mks] test cases for spiral.csv works fine
+[10 mks] test cases for trap.csv works fine
+[5 mks] Code check: A* is clearly visible and correct in the code (I have asked them to clearly highlight where the A* code is)
+[5 mks] Code check: comments, formatting, etc, correct
+Deduct marks for instructions not being followed
+Deduct marks if test cases that should fail do not fail gracefully (e.g. due to low D, or incorrect command line parameters)
+Deduct marks if runtime is unusually slow \– I\’ve talked about some common sense optimisations in the lecture
+
+Total marks: 50
 "
 fi
