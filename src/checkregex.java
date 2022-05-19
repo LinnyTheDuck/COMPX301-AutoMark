@@ -1,7 +1,10 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class checkregex {
-    public static String[] lines; // global for full file
+    public static List<String> lines = new ArrayList<String>();
+    //public static String[] lines; // global for full file
     public static File answers = new File("../test_files/answers.txt");
     public static void main(String[] args) {
         try {
@@ -9,17 +12,20 @@ public class checkregex {
             lines = read(quotes); // get full file for checking purposes
             int pass = checks(); // run checks for the output files
 
-            File empty = new File("../temp/errout.txt"); // should be empty
+            // this checks the error test
+            File empty = new File("../temp/errout.txt"); // should be empty, errors print to System.err
             BufferedReader br = new BufferedReader(new FileReader(empty));
             String line = br.readLine();
-            if (line == null) //System.out.println("No errors, and file empty");
+            if (line == null) // if the file is empty
                 pass++;
-            else
+            else{ // otherwise print out contents for debugging purposes
+                System.out.println("===== START ERROR OUTPUT =====");
                 while(line != null){
                     System.out.println(line);
                     line = br.readLine();
                 }
-
+                System.out.println("===== FINISH ERROR OUTPUT =====");
+            }
             br.close();
 
             System.out.println("Total Tests Passed: " + pass);
@@ -34,13 +40,13 @@ public class checkregex {
         File[] farray = filearray();
         try {
             BufferedReader br = new BufferedReader(new FileReader(answers));
-            for (File file : farray) { // for each of teh files
+            for (File file : farray) { // for each of the output files
                 BufferedReader b = new BufferedReader(new FileReader(file)); // have a file read in
                 String[] num = new String[20];
                 num = br.readLine().split(" "); // convert to ints later ig
                 for (String s : num) { // compare the ith line to the ith index value in the source
                     String out = b.readLine();
-                    if(!out.equals(lines[Integer.parseInt(s)])){ // if matches keep going
+                    if(!out.equals(lines.get(Integer.parseInt(s)))){ // if matches keep going
                         System.out.println("File Number: " + totaltests);
                         System.out.println(out);
                         worked = false;
@@ -71,14 +77,16 @@ public class checkregex {
         return outlines;
     }
 
-    public static String[] read(File f){
-        String[] lines_out = new String[53]; // array of length 51
+    public static List<String> read(File f){
+        List<String> lines_out = new ArrayList<String>(); // use a list instead of array
+        //String[] lines_out = new String[53]; // array of length 51
         try {
             BufferedReader br = new BufferedReader(new FileReader(f)); 
             String l = br.readLine();
             int i = 1;
-            while(l != null) { // fill up array
-                lines_out[i] = l;
+            while(l != null) { // fill up list
+                //lines_out[i] = l;
+                lines_out.set(i, l); // set l to be the ith element 
                 i++;
                 l = br.readLine();
             }

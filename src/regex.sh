@@ -38,7 +38,8 @@ else
         java REcompile "$regex_fail" > "$dir"/temp/errout.txt
         cd "$dir"/src
 
-        printf "Any differences will be displayed below:"
+        printf "\n===== Finished Running the Java Files. Now running checks =====\n"
+        printf "Any differences will be displayed below:\n\n"
 
         java checkregex "$search_file"
         printf "\nFor any tests that fail, check a few things:
