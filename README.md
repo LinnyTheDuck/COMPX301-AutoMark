@@ -19,6 +19,7 @@ Options are:
 -c                              mark compression algorithm (works with LZ77, LZ78 and LZW)
 -r                              mark regex and search
 -a                              mark A*
+-v                              mark AI Vision Project
 
 For example:
 ./automark.sh -r ../12345_12345/
@@ -69,3 +70,4 @@ This is on the todolist, needs to be done without allowing students to view the 
 - A*: get solutions to the tests? If uses GUI how to verify?
 - Make getting answers for regex and a* more intuitive -  auto solution generator?
 - Code/comment cleanup for regex (java)
+- Implement AI Vision marking and solutions

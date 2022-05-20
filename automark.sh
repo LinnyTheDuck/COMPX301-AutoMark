@@ -15,6 +15,7 @@ Options are:
 -c                              mark compression algorithm (works with LZ77, LZ78 and LZW)
 -r                              mark regex and search
 -a                              mark A*
+-v                              mark AI Vision Project
 
 For example:
 ./automark.sh -r ../12345_12345/
@@ -67,6 +68,9 @@ else
         elif [ "$1" == '-a' ]
         then
             ./src/astar.sh "$2"
+        elif [ "$1" == '-v' ]
+        then
+            ./src/vision.sh "$2"
         else # more error checking
             printf "invalid option, run 'automark.sh -h' to see instructions \n"
         fi

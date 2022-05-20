@@ -4,7 +4,6 @@ import java.util.List;
 
 public class checkregex {
     public static List<String> lines = new ArrayList<String>();
-    //public static String[] lines; // global for full file
     public static File answers = new File("../test_files/answers.txt");
     public static void main(String[] args) {
         try {
@@ -42,14 +41,21 @@ public class checkregex {
             BufferedReader br = new BufferedReader(new FileReader(answers));
             for (File file : farray) { // for each of the output files
                 BufferedReader b = new BufferedReader(new FileReader(file)); // have a file read in
-                String[] num = new String[20];
+
+                String[] num = new String[20]; // should be a list
                 num = br.readLine().split(" "); // convert to ints later ig
+                // TODO: store all the indexes inside the list as integers
+
                 for (String s : num) { // compare the ith line to the ith index value in the source
                     String out = b.readLine();
                     if(!out.equals(lines.get(Integer.parseInt(s)))){ // if matches keep going
-                        System.out.println("File Number: " + totaltests);
-                        System.out.println(out);
+                        System.out.println("===== FILE " + totaltests + " CONTENTS =====");
+                        // print out all file contents
+                        System.out.println("\n===== FILE " + totaltests + " EXPECTED CONTENTS =====");
+                        // print out all expected contents
+                        //System.out.println(out);
                         worked = false;
+                        break; // break out of looking at the file
                     }
                 }
                 if (worked)
@@ -79,14 +85,13 @@ public class checkregex {
 
     public static List<String> read(File f){
         List<String> lines_out = new ArrayList<String>(); // use a list instead of array
-        //String[] lines_out = new String[53]; // array of length 51
         try {
             BufferedReader br = new BufferedReader(new FileReader(f)); 
             String l = br.readLine();
+            lines_out.add(0, ""); // just a placeholder that's never used
             int i = 1;
             while(l != null) { // fill up list
-                //lines_out[i] = l;
-                lines_out.set(i, l); // set l to be the ith element 
+                lines_out.add(i, l); // add l to be the ith element 
                 i++;
                 l = br.readLine();
             }
