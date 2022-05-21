@@ -27,7 +27,7 @@ public class checkregex {
             }
             br.close();
 
-            System.out.println("Total Tests Passed: " + pass);
+            System.out.println("\nTotal Tests Passed: " + pass);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -49,11 +49,22 @@ public class checkregex {
                 for (String s : num) { // compare the ith line to the ith index value in the source
                     String out = b.readLine();
                     if(!out.equals(lines.get(Integer.parseInt(s)))){ // if matches keep going
-                        System.out.println("===== FILE " + totaltests + " CONTENTS =====");
-                        // print out all file contents
+                        System.out.println("===== FILE " + totaltests + " CONTENTS ====="); // print out all file contents
+                        Runtime rt = Runtime.getRuntime();
+                        Process p = rt.exec("cat ../temp/" + file.getName());
+                        BufferedReader console = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        String str;
+                        while((str = console.readLine()) != null){
+                            System.out.println(str);
+                        }
+
                         System.out.println("\n===== FILE " + totaltests + " EXPECTED CONTENTS =====");
                         // print out all expected contents
-                        //System.out.println(out);
+                        for (String st : num) {
+                            System.out.println(lines.get(Integer.parseInt(st)));
+                        }
+
+
                         worked = false;
                         break; // break out of looking at the file
                     }
@@ -65,13 +76,13 @@ public class checkregex {
                 totaltests++;
                 b.close();
             }
-            
+
             br.close();
         } catch (Exception e) {
             System.err.println("something went wrong with the tests");
             e.printStackTrace();
         }
-        
+
         return totalpass;
     }
 
@@ -86,12 +97,12 @@ public class checkregex {
     public static List<String> read(File f){
         List<String> lines_out = new ArrayList<String>(); // use a list instead of array
         try {
-            BufferedReader br = new BufferedReader(new FileReader(f)); 
+            BufferedReader br = new BufferedReader(new FileReader(f));
             String l = br.readLine();
             lines_out.add(0, ""); // just a placeholder that's never used
             int i = 1;
             while(l != null) { // fill up list
-                lines_out.add(i, l); // add l to be the ith element 
+                lines_out.add(i, l); // add l to be the ith element
                 i++;
                 l = br.readLine();
             }

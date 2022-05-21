@@ -69,5 +69,4 @@ This is on the todolist, needs to be done without allowing students to view the 
 
 - A*: get solutions to the tests? If uses GUI how to verify?
 - Make getting answers for regex and a* more intuitive -  auto solution generator?
-- Code/comment cleanup for regex (java)
 - Implement AI Vision marking and solutions
