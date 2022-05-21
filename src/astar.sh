@@ -49,5 +49,7 @@ Deduct marks if test cases that should fail do not fail gracefully (e.g. due to 
 Deduct marks if runtime is unusually slow \– I\’ve talked about some common sense optimisations in the lecture
 
 Total marks: 50
+
+Solution verifying will have to be eyeballed, according to Michael
 "
 fi

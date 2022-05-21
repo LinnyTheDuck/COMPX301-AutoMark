@@ -26,8 +26,9 @@ For example:
 Will mark a students regex and search assignment in the 12345_12345 folder 
 (remember the .. to go up a directory)
 
-./automark.sh --generate -r
+./automark.sh --generate -r ../regex_solution
 Will generate a regex solution based on the parameters specified in settings.conf
+You will have to supply your own working regex solution
 ```
 
 ## Assumptions
@@ -59,14 +60,11 @@ You can add new testing files into the `test_files` directory. Remember to updat
 
 ### Auto Generating Solutions
 
-`./automark.sh --generate <algorithm_option>` will generate solutions for a specified algorithm. Currently algorithm options are compression and A*
-
-This is on the todolist, needs to be done without allowing students to view the code.
+`./automark.sh --generate <algorithm_option> <directory>` will generate solutions for a specified algorithm. Currently algorithm options are compression.
 
 `./automark.sh --hex <input_file>` will generate a hex file from a plaintext input file. The output file will be placed in the `test_files` directory.
 
 ## Todos
 
-- A*: get solutions to the tests? If uses GUI how to verify?
-- Make getting answers for regex and a* more intuitive -  auto solution generator?
+- regex auto solution generator
 - Implement AI Vision marking and solutions

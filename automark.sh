@@ -21,8 +21,9 @@ For example:
 ./automark.sh -r ../12345_12345/
 Will mark a students regex and search assignment in the 12345_12345 folder (remember the .. to go up a directory)
 
-./automark.sh --generate -r
+./automark.sh --generate -r ../regex_solution
 Will generate a regex solution based on the parameters specified in settings.conf
+You will have to supply your own working regex solution
 "
 else
     cd src
@@ -33,10 +34,13 @@ else
     then
         if [ "$2" == '-r' ]
         then
-            printf "Generating Regex Solution: On the TODO list\n"
-        elif [ "$2" == '-a' ]
-        then
-            printf "Generating A\* Solution: On the TODO list\n"
+            if [ -z "$3" ]
+            then
+                printf "no solutions specified, run 'automark.sh -h' to see instructions \n"    
+            else
+                printf "Generating Regex Solution: On the TODO list\n"
+                ./src/gen_regex.sh "$3"
+            fi
         else # more error checking
             printf "no algorithm specified, run 'automark.sh -h' to see instructions \n"
         fi
