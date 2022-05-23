@@ -22,6 +22,7 @@ Things to do:
 - Read through the code to gague an idea of how well the student understands the algorithm
 "
 else
+    cd "$1"
     # java Stars <test file> <index in csv for start point> <index in csv for end point> <distance value>
     printf "Testing Small CSV\n"
     java Stars "$dir"/test_files/"$small_csv" "$start_index_1" "$end_index_1" "$small_D"

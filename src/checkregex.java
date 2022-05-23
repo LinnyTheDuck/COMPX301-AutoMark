@@ -79,7 +79,7 @@ public class checkregex {
 
             br.close();
         } catch (Exception e) {
-            System.err.println("something went wrong with the tests");
+            System.err.println("something went wrong with the test " + totaltests);
             e.printStackTrace();
         }
 
